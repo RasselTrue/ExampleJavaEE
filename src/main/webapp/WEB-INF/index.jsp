@@ -8,7 +8,7 @@
 <h1>Главная</h1>
 <nav>
     <ul>
-        <li><a href="main">Главная</a></li>
+        <li><a href="index">Главная</a></li>
         <li><a href="catalog">Каталог</a></li>
         <li><a href="product">Товар</a></li>
         <li><a href="cart">Корзина</a></li>

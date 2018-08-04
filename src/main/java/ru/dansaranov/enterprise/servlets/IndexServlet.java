@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = MainServlet.NAME, urlPatterns = {"/main"})
-public class MainServlet extends HttpServlet {
+@WebServlet(name = IndexServlet.NAME, urlPatterns = {"/index"})
+public class IndexServlet extends HttpServlet {
 
-    public static final String NAME = "MainServlet";
+    public static final String NAME = "IndexServlet";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/main.jsp");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/index.jsp");
         dispatcher.forward(req, resp);
     }
 
