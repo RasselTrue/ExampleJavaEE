@@ -1,9 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Ошибка!</title>
+    <title>Товар</title>
 </head>
 <body>
-<h4>Ошибка 403. Отказано в доступе!</h4>
+<h1>Товар</h1>
+<jsp:include page="/WEB-INF/template/menu.jsp"/>
 </body>
 </html>
