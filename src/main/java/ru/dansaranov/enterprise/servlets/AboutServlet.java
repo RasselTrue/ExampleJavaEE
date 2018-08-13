@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = ProductServlet.NAME, urlPatterns = {"/product"})
-public class ProductServlet extends HttpServlet {
+@WebServlet(name = AboutServlet.NAME, urlPatterns = {"/about"})
+public class AboutServlet extends HttpServlet{
 
-    public static final String NAME = "ProductServlet";
+    public static final String NAME = "AboutServlet";
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/product.jsp");
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/about.jsp");
         dispatcher.forward(req, resp);
     }
 
