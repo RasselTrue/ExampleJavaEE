@@ -1,5 +1,7 @@
 package ru.dansaranov.enterprise.dao;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import ru.dansaranov.enterprise.entity.Product;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +13,7 @@ import java.util.Map;
 @ApplicationScoped
 public class ProductDAO {
 
+    @NotNull
     private Map<String, Product> products = new LinkedHashMap<>();
 
     @PostConstruct
@@ -18,24 +21,27 @@ public class ProductDAO {
         merge(new Product("DEMO PRODUCT"));
     }
 
+    @NotNull
     public Collection<Product> getProducts() {
         return products.values();
     }
 
-    public Product getProductById(String productId) {
+    @Nullable
+    public Product getProductById(@Nullable final String productId) {
         if (productId == null || productId.isEmpty()) return null;
         return products.get(productId);
     }
 
-    public Product merge(Product product) {
+    @Nullable
+    public Product merge(@Nullable final Product product) {
         if (product == null) return null;
-        final String id = product.getId();
+        @Nullable final String id = product.getId();
         if (id == null || id.isEmpty()) return null;
         products.put(id, product);
         return product;
     }
 
-    public void removeProductById(String productId) {
+    public void removeProductById(@Nullable String productId) {
         if (productId == null || productId.isEmpty()) return;
         if (!products.containsKey(productId)) return;
         products.remove(productId);

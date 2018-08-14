@@ -1,6 +1,5 @@
-package ru.dansaranov.enterprise.servlets;
+package ru.dansaranov.enterprise.servlet;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,19 +7,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = AboutServlet.NAME, urlPatterns = {"/about"})
-public class AboutServlet extends HttpServlet{
-
-    public static final String NAME = "AboutServlet";
-
+@WebServlet(urlPatterns = "/error")
+public class ErrorServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/views/about.jsp");
-        dispatcher.forward(req, resp);
+        switch (resp.getStatus()) {
+            case 404:
+                req.getRequestDispatcher("WEB-INF/views/error404.jsp").forward(req, resp);
+                break;
+            case 403:
+                req.getRequestDispatcher("WEB-INF/views/error403.jsp").forward(req, resp);
+                break;
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doGet(req, resp);
     }
+
 }
