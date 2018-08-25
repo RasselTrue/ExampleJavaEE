@@ -2,6 +2,7 @@ package ru.dansaranov.enterprise.controller;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import ru.dansaranov.enterprise.dao.CategoryDAO;
 import ru.dansaranov.enterprise.dao.ProductDAO;
 import ru.dansaranov.enterprise.entity.Product;
 
@@ -16,8 +17,14 @@ public class ProductEditController {
     @Inject
     private ProductDAO productDAO;
 
+    @Inject
+    private CategoryDAO categoryDAO;
+
     @Nullable
     private String id;
+
+    @Nullable
+    private String categoryId;
 
     @NotNull
     private Product product = new Product();
@@ -31,6 +38,7 @@ public class ProductEditController {
 
     @NotNull
     public String save() {
+        if (categoryId != null) product.setCategory(categoryDAO.getCategoryById(categoryId));
         productDAO.merge(product);
         return "product-list";
     }
@@ -53,4 +61,11 @@ public class ProductEditController {
         this.id = id;
     }
 
+    public String getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId;
+    }
 }

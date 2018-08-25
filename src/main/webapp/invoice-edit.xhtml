@@ -10,20 +10,19 @@
 <h:head>
 </h:head>
 <f:metadata>
-    <f:viewParam name="id" value="#{productEditController.id}" />
-    <f:viewParam name="categoryId" value="#{productEditController.categoryId}" />
-    <f:viewAction action="#{productEditController.init}" />
+    <f:viewParam name="id" value="#{invoiceEditController.id}" />
+    <f:viewAction action="#{invoiceEditController.init}" />
 </f:metadata>
 <h:body>
     <component:mainMenu />
-    <h1><p:outputLabel value="РЕДАКТИРОВАТЬ ТОВАР" /></h1>
+    <h1><p:outputLabel value="РЕДАКТИРОВАТЬ ЗАКАЗ" /></h1>
     <h:form>
         <p:messages id="msg"/>
         <p:outputPanel>
             <p:outputLabel value="ИМЯ" />
         </p:outputPanel>
         <p:outputPanel  styleClass="ui-fluid">
-            <p:inputText value="#{productEditController.product.name}" id="name" required="true" requiredMessage="ВВЕДИТЕ ИМЯ" >
+            <p:inputText value="#{invoiceEditController.invoice.name}" id="name" required="true" requiredMessage="ВВЕДИТЕ ИМЯ" >
             <p:ajax update="msg" event="keyup"/>
             </p:inputText>
         </p:outputPanel>
@@ -33,7 +32,7 @@
             <p:outputLabel value="ОПИСАНИЕ" />
         </p:outputPanel>
         <p:outputPanel  styleClass="ui-fluid">
-            <p:inputText value="#{productEditController.product.description}" id="description" required="true" requiredMessage="ВВЕДИТЕ ОПИСАНИЕ">
+            <p:inputText value="#{invoiceEditController.invoice.description}" id="description" required="true" requiredMessage="ВВЕДИТЕ ОПИСАНИЕ">
             <p:ajax update="msg" event="keyup"/>
             </p:inputText>
         </p:outputPanel>
@@ -43,7 +42,7 @@
             <p:outputLabel value="НАЧАЛЬНАЯ ДАТА" />
         </p:outputPanel>
         <p:outputPanel styleClass="ui-fluid">
-            <p:calendar value="#{productEditController.product.dateBegin}" />
+            <p:calendar value="#{invoiceEditController.invoice.dateBegin}" />
         </p:outputPanel>
         <p:spacer height="20" />
 
@@ -51,15 +50,14 @@
             <p:outputLabel value="КОНЕЧНАЯ ДАТА" />
         </p:outputPanel>
         <p:outputPanel  styleClass="ui-fluid">
-            <p:calendar value="#{productEditController.product.dateEnd}" />
+            <p:calendar value="#{invoiceEditController.invoice.dateEnd}" />
         </p:outputPanel>
         <p:spacer height="20" />
 
         <p:outputPanel>
-            <p:commandButton update="msg" value="СОХРАНИТЬ" action="#{productEditController.save}" />
+            <p:commandButton update="msg" value="СОХРАНИТЬ" action="#{invoiceEditController.save}" />
             <p:spacer width="20" />
-            <p:button value="ТОВАРЫ" outcome="product-list">
-                <f:param name="categoryId" value="#{productEditController.categoryId}" />
+            <p:button value="ЗАКАЗЫ" outcome="invoice-list">
             </p:button>
         </p:outputPanel>
 

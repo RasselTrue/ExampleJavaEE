@@ -30,7 +30,7 @@
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>product-list.xhtml</welcome-file>
+        <welcome-file>category-list.xhtml</welcome-file>
     </welcome-file-list>
 
     <error-page>

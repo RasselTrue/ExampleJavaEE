@@ -9,49 +9,41 @@
       xmlns:component="http://java.sun.com/jsf/composite/component">
 <h:head>
 </h:head>
-<f:metadata>
-    <f:viewParam name="categoryId" value="#{productListController.categoryId}" />
-</f:metadata>
+
 <h:body>
-    <component:mainMenu />
+    <component:mainMenu showProducts="false"/>
     <h:form>
-        <h1>СПИСОК ТОВАРОВ</h1>
-        <p:dataTable id="dataTable" value="#{productListController.productList}" var="product" rowIndexVar="indexVar">
+        <h1>СПИСОК ЗАКАЗОВ</h1>
+        <p:dataTable id="dataTable" value="#{invoiceListController.invoiceList}" var="invoice">
             <f:facet name="header">
                 <p:outputPanel style="margin: 5px;">
-                    <p:outputLabel value="ТОВАРЫ"/>
+                    <p:outputLabel value="ЗАКАЗЫ"/>
                 </p:outputPanel>
             </f:facet>
-            <p:column headerText="№" width="50" style="text-align: center;">
-                <p:outputLabel value="#{indexVar +1}." />
-            </p:column>
-            <p:column headerText="КАТЕГОРИЯ" width="200">
-                <p:outputLabel value="#{product.category.name}" />
-            </p:column>
             <p:column headerText="ИМЯ" width="200">
-                <p:outputLabel value="#{product.name}"/>
+                <p:outputLabel value="#{invoice.name}"/>
             </p:column>
             <p:column headerText="ОПИСАНИЕ">
-                <p:outputLabel value="#{product.description}"/>
+                <p:outputLabel value="#{invoice.description}"/>
             </p:column>
             <p:column headerText="НАЧАЛЬНАЯ ДАТА" width="150" style="text-align: center;">
-                <p:outputLabel value="#{product.dateBegin}">
+                <p:outputLabel value="#{invoice.dateBegin}">
                     <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"/>
                 </p:outputLabel>
             </p:column>
             <p:column headerText="КОНЕЧНАЯ ДАТА" width="150" style="text-align: center;">
-                <p:outputLabel value="#{product.dateEnd}">
+                <p:outputLabel value="#{invoice.dateEnd}">
                     <f:convertDateTime pattern="dd.MM.yyyy HH:mm:ss"/>
                 </p:outputLabel>
             </p:column>
             <p:column width="30" style="text-align: center;">
-                <p:link outcome="product-edit">
+                <p:link outcome="invoice-edit">
                     <i class="fa fa-edit" style="font-size: 1.5em;margin: 5px;"/>
-                    <f:param name="id" value="#{product.id}"/>
+                    <f:param name="id" value="#{invoice.id}"/>
                 </p:link>
             </p:column>
             <p:column width="30" style="text-align: center;">
-                <p:commandLink actionListener="#{productListController.removeProductById(product.id)}"
+                <p:commandLink actionListener="#{invoiceListController.removeInvoiceById(invoice.id)}"
                                update="dataTable">
                     <i class="fa fa-trash" style="font-size: 1.5em;margin: 5px;"/>
                 </p:commandLink>
@@ -59,9 +51,9 @@
         </p:dataTable>
         <p:spacer height="20"/>
         <p:outputPanel>
-            <p:button value="СОЗДАТЬ" outcome="product-edit">
-                <f:param name="categoryId" value="#{productListController.categoryId}" />
-            </p:button>
+            <p:button value="СОЗДАТЬ" outcome="invoice-edit"/>
+            <p:spacer width="20"/>
+            <p:commandButton value="ОБНОВИТЬ" update="@form"/>
         </p:outputPanel>
     </h:form>
 </h:body>

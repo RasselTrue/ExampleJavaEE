@@ -1,12 +1,16 @@
 package ru.dansaranov.enterprise.entity;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
-public class Product extends AbstractEntity {
+public class Invoice extends AbstractEntity {
 
     @Nullable
     private String name = null;
@@ -20,11 +24,8 @@ public class Product extends AbstractEntity {
     @Nullable
     private Date dateEnd;
 
-    @ManyToOne
-    private Category category;
-
-    @ManyToOne
-    private Invoice invoice;
+    @OneToMany(mappedBy = "invoice", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Product> products = new ArrayList<>();
 
     @Nullable
     public Date getDateBegin() {
@@ -44,11 +45,11 @@ public class Product extends AbstractEntity {
         this.dateEnd = dateEnd;
     }
 
-    public Product() {
+    public Invoice() {
 
     }
 
-    public Product(@Nullable final String name) {
+    public Invoice(@Nullable final String name) {
         this.name = name;
     }
 
@@ -70,21 +71,12 @@ public class Product extends AbstractEntity {
         this.description = description;
     }
 
-    @Nullable
-    public Category getCategory() {
-        return category;
+    @NotNull
+    public List<Product> getProducts() {
+        return products;
     }
 
-    public void setCategory(@Nullable final Category category) {
-        this.category = category;
-    }
-
-    @Nullable
-    public Invoice getInvoice() {
-        return invoice;
-    }
-
-    public void setInvoice(@Nullable final Invoice invoice) {
-        this.invoice = invoice;
+    public void setProducts(@NotNull final List<Product> products) {
+        this.products = products;
     }
 }

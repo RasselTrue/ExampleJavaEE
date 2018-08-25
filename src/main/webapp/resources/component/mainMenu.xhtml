@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:composition="http://java.sun.com/jsf/composite">
+
+<composition:interface>
+    <composition:attribute name="showProducts" type="java.lang.Boolean" default="true"/>
+</composition:interface>
+<composition:implementation>
+    <p:menubar style="margin-bottom: 20px;">
+        <p:menuitem value="КАТЕГОРИИ" outcome="category-list"/>
+        <p:menuitem value="ТОВАРЫ" outcome="product-list" rendered="#{cc.attrs.showProducts}"/>
+        <p:menuitem value="ЗАКАЗЫ" outcome="invoice-list"/>
+    </p:menubar>
+</composition:implementation>
+</html>
