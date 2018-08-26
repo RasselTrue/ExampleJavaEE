@@ -3,11 +3,14 @@ package ru.dansaranov.enterprise.dao;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.dansaranov.enterprise.entity.Invoice;
+import ru.dansaranov.enterprise.interceptors.LogInterceptor;
 
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import java.util.List;
 
 @Stateless
+@Interceptors({LogInterceptor.class})
 public class InvoiceDAO extends AbstractDAO{
 
     public Invoice findOne(String id) {

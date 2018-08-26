@@ -3,12 +3,15 @@ package ru.dansaranov.enterprise.dao;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import ru.dansaranov.enterprise.entity.Product;
+import ru.dansaranov.enterprise.interceptors.LogInterceptor;
 
 import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
+import javax.interceptor.Interceptors;
 import java.util.*;
 
 @Stateless
+@Interceptors({LogInterceptor.class})
 public class ProductDAO extends AbstractDAO{
 
     public Product findOne(String id) {
