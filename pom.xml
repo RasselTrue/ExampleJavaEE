@@ -82,6 +82,34 @@
                 <artifactId>wildfly-maven-plugin</artifactId>
                 <version>1.0.2.Final</version>
             </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>jaxws-maven-plugin</artifactId>
+                <version>1.9</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>wsimport</goal>
+                        </goals>
+                        <phase>generate-sources</phase>
+                    </execution>
+                </executions>
+                <configuration>
+
+                    <!-- Keep generated files -->
+                    <keep>true</keep>
+                    <!-- Package name -->
+                    <packageName>org.example.echo.service.skeleton</packageName>
+                    <!-- generated source files destination-->
+                    <sourceDestDir>src/main/java</sourceDestDir>
+
+                    <wsdlUrls>
+                        <wsdlUrl>
+                            http://localhost:8080/ProductService?wsdl
+                        </wsdlUrl>
+                    </wsdlUrls>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
